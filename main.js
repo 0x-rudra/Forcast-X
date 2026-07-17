@@ -1,4 +1,4 @@
-import './style.css'
+
 
 // DOM Elements
 const cityInput = document.getElementById('city-input');
@@ -92,7 +92,7 @@ const showError = (msg) => {
 
 const updateUI = (current, daily, aqiCurrent, locationName) => {
     loading.classList.add('hidden');
-    
+
     // Update Header
     cityNameEl.textContent = locationName;
     dateEl.textContent = formatDate(new Date());
@@ -111,11 +111,11 @@ const updateUI = (current, daily, aqiCurrent, locationName) => {
     cloudCoverEl.textContent = `${current.cloud_cover}%`;
     visibilityEl.textContent = `${(current.visibility / 1000).toFixed(1)} km`;
     pressureEl.textContent = `${current.surface_pressure} hPa`;
-    
+
     // Some endpoints might not return uv_index in current, so we grab max from today
-    uvIndexEl.textContent = daily.uv_index_max && daily.uv_index_max.length > 0 
+    uvIndexEl.textContent = daily.uv_index_max && daily.uv_index_max.length > 0
                                 ? daily.uv_index_max[0] : '--';
-                                
+
     // Format sunrise and sunset times
     if (daily.sunrise && daily.sunset && daily.sunrise.length > 0) {
         const sr = new Date(daily.sunrise[0]).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
@@ -130,7 +130,7 @@ const updateUI = (current, daily, aqiCurrent, locationName) => {
         const aqi = aqiCurrent.us_aqi;
         aqiValueEl.textContent = aqi;
         aqiBanner.classList.remove('hidden');
-        
+
         aqiStatusEl.className = 'aqi-status'; // Reset classes
         if (aqi <= 50) {
             aqiStatusEl.textContent = 'Good';
@@ -142,7 +142,7 @@ const updateUI = (current, daily, aqiCurrent, locationName) => {
             aqiStatusEl.textContent = 'Poor';
             aqiStatusEl.classList.add('aqi-poor');
         }
-        
+
         // Update Pollutants
         pm25El.textContent = Math.round(aqiCurrent.pm2_5) || '--';
         pm10El.textContent = Math.round(aqiCurrent.pm10) || '--';
@@ -165,7 +165,7 @@ const updateUI = (current, daily, aqiCurrent, locationName) => {
         const fInfo = getWeatherInfo(daily.weather_code[i]);
         const maxTemp = Math.round(daily.temperature_2m_max[i]);
         const minTemp = Math.round(daily.temperature_2m_min[i]);
-        
+
         // Extra details for expansion
         const uvMax = daily.uv_index_max[i] || '--';
         const rainProb = daily.precipitation_probability_max ? daily.precipitation_probability_max[i] + '%' : '--';
@@ -188,12 +188,12 @@ const updateUI = (current, daily, aqiCurrent, locationName) => {
                 <div class="f-detail"><i class='bx bx-sun'></i> UV Max: ${uvMax}</div>
             </div>
         `;
-        
+
         // Toggle expansion on click
         item.addEventListener('click', () => {
             item.classList.toggle('expanded');
         });
-        
+
         forecastList.appendChild(item);
     }
 
@@ -209,12 +209,12 @@ const fetchWeather = async (lat, lon, locationName) => {
             fetch(url),
             fetch(aqiUrl).catch(() => null) // Fallback if AQI fails
         ]);
-        
+
         if (!weatherRes.ok) throw new Error("Weather data not found");
-        
+
         const data = await weatherRes.json();
         const aqiData = aqiRes && aqiRes.ok ? await aqiRes.json() : null;
-        
+
         updateUI(data.current, data.daily, aqiData ? aqiData.current : null, locationName);
     } catch (err) {
         showError("Failed to fetch weather data.");

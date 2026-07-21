@@ -1,26 +1,36 @@
-# Forecast-X (Aurora Weather App) ⛅
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A modern, high-performance weather application built with Vanilla JavaScript and Vite. It features a stunning "Aurora Glassmorphism" UI with dynamic backgrounds and sleek frosted-glass panels.
+## Getting Started
 
-## Features ✨
-- **Real-time Weather**: Accurate current weather data and 7-day forecasting.
-- **Air Quality Index (AQI)**: Detailed pollutant tracking (PM2.5, PM10, NO₂, O₃, CO) with dynamic color-coded status badges.
-- **Expandable Forecasts**: Click on any day in the 7-day forecast to reveal additional details like UV Index, Rain Probability, and Max Wind speeds.
-- **Geolocation Support**: Automatically fetches weather for your current location.
-- **Fully Responsive**: A mobile-first design that scales beautifully from tiny phone screens to large desktop monitors.
+First, run the development server:
 
-## Tech Stack 🛠️
-- **Vite**: Next-generation frontend tooling for instant server starts and lightning-fast HMR.
-- **Vanilla HTML/CSS/JS**: Zero heavy frameworks! Max performance and native DOM manipulation.
-- **Open-Meteo API**: Free, open-source weather and geocoding API. No API keys required!
-- **Boxicons**: Crisp, scalable vector icons.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## Getting Started 🚀
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### Clone the repository:
-   ```bash
-   git clone https://github.com/0x-rudra/Forcast-X.git
-   ```
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
